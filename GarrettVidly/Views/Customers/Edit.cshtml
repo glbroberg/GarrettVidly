@@ -1,8 +1,21 @@
-﻿
+﻿@model GarrettVidly.Models.Customer
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Edit Customer</h2>
+
+@using(Html.BeginForm("Save", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { value = Model.Name, @class = "form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.BirthDate)
+        @Html.TextBoxFor(m => m.BirthDate, new { value = Model.BirthDate.Value.ToShortDateString(), @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
 

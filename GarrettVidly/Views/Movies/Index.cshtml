@@ -1,17 +1,36 @@
-﻿@model GarrettVidly.ViewModels.MovieIndexViewModel
+﻿@model List<GarrettVidly.Models.Movie>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Movies</h2>
+@Html.ActionLink("Add Movie", "New", new {@class = "btn, btn-primary" })
 
-@if (Model.Movies.Count() == 0)
+@if (Model.Count() == 0)
 {
     <text>No Movies To Display</text>
 }
-@foreach(var movie in Model.Movies)
+else
 {
-    <p>@movie.Name</p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Movies</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "Edit", new {Id = movie.Id} )</td>
+                    <td>@movie.Genre.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 }
+
 
